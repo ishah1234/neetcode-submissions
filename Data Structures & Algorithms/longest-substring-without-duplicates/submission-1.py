@@ -1,0 +1,10 @@
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        lastSeen = {}
+        l, res = 0, 0
+        for r in range(len(s)):
+            if s[r] in lastSeen:
+                l = max(lastSeen[s[r]]+1, l)
+            lastSeen[s[r]] = r
+            res = max(res, r-l+1)
+        return res
